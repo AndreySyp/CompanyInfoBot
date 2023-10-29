@@ -52,9 +52,7 @@ public class HandleTelegramBot
         if (message == null) return;
         if (message.Text == null) return;
 
-        int spaceSymbol = message.Text.IndexOf(' ');
-        if (spaceSymbol == -1) spaceSymbol = 0;
-        switch (message.Text[..spaceSymbol])
+        switch (message.Text[..(message.Text + ' ').IndexOf(' ')])
         {
             case "/help":
                 await botClient.SendTextMessageAsync(message.Chat.Id,
